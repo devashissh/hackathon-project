@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 
 module.exports = {
-  mode: 'production',
   //Where files should be sent once they are bundled
   output: {
     path: path.join(__dirname, '/dist'),
@@ -28,6 +27,9 @@ module.exports = {
               "@babel/preset-env",
               "@babel/preset-react"
             ],
+            plugins: [
+              ["@babel/transform-runtime"]
+            ]
           }
         },
       },
