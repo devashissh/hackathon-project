@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import {APIService} from '../Services/api';
+import { isEmpty } from 'lodash';
 
 const Home= () => {
   let [responseData, setResponseData] = useState({});
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   const getData = () => {
-    APIService.axiosCall('https://run.mocky.io/v3/a3cbf73e-d76c-4c27-b5ba-9d31fc3fe3eb', {
+    APIService.axiosCall('http://localhost:1111/collection?name=Person', {
       method: 'GET',
       successCallBack: (resp) => handleResponse(resp)
     })
   }
 
-  const handleResponse = (data) => {
-    setResponseData(data);
+  const handleResponse = (response) => {
+    setResponseData(response.data);
   }
 
   return (
     <div >Welcome Home!
-      {responseData && <span>
-        {responseData.statusText}  
-      </span>}
+      {
+        !isEmpty(responseData) && responseData.map((data, i) =>  (
+          <div key={i}>
+            {data.firstName} {' '}{data.lastName}
+          </div>))
+      }
     </div>
   );
 }

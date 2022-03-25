@@ -6,7 +6,7 @@ const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 module.exports = {
   //Where files should be sent once they are bundled
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/build'),
     filename: 'main.bundle.js'
   },
   //webpack 5 comes with devServer which loads in development mode
